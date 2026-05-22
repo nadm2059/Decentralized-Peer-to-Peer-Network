@@ -1,0 +1,62 @@
+# Specify the Docker Compose file format specification version for parsing compatibility
+version: '3.8'
+
+# Begin defining the specific runtime network containers that form the system cluster
+services:
+  # Orchestrate the centralized bootstrap lookup directory discovery instance
+  bootstrap:
+    # Set the build directory context path to look at the immediate folder contents
+    build: .
+    # Force the engine execution layer to process print statements instantly without buffering
+    command: python -u bootstrap.py
+    # Route port allocations, mapping host machine port 5000 directly inside the container layout
+    ports:
+      - "5000:5000"
+    # Attach this container instance to the designated custom network mesh system layout
+    networks:
+      - p2p_network
+
+  # Orchestrate the low-level Anycast dynamic proxy router infrastructure layer
+  anycast_gateway:
+    # Reference local path configurations to parse the standardized shared project Dockerfile setup
+    build: .
+    # Instruct the container boundary space to boot up the TCP routing script execution layer
+    command: python -u anycast_router.py
+    # Map raw TCP port 6000 straight through to accept client connections directly down the wire
+    ports:
+      - "6000:6000"  # Single TCP access point representing Anycast Layer
+    # Enforce boot order parameters ensuring the central bootstrap registry launches first
+    depends_on:
+      - bootstrap
+    # Connect this gateway container instance into the common system communication network layout
+    networks:
+      - p2p_network
+
+  # Orchestrate the cluster storage pool peer instances concurrently
+  p2p_node:
+    # Construct the image build matrix using local configuration context path details
+    build: .
+    # Launch the main peer application layer node file execution engine script natively
+    command: python -u node.py
+    # Pause node container compilation until the bootstrap server registry layer transitions to running
+    depends_on:
+      - bootstrap
+    ports:
+      - "5001:5000"
+    # Inject persistent cluster global variables into the isolated node container environments
+    environment:
+      - BOOTSTRAP_URL=http://bootstrap:5000
+    # Assign every peer container instance straight onto the shared bridge network layer mapping
+    networks:
+      - p2p_network
+    # Configure scalability criteria parameters for the target network layout infrastructure
+    deploy:
+      # Instantly initialize a robust, scaled cluster of 5 independent peer node instances
+      replicas: 5
+
+# Declare structural details mapping out the virtual networks used within this setup
+networks:
+  # Initialize the custom network domain referenced within the service layout bindings above
+  p2p_network:
+    # Use the bridge driver to isolate communication inside a virtual local network mesh
+    driver: bridge

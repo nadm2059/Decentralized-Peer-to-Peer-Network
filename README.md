@@ -1,6 +1,3 @@
-Here is the fully aggregated, final version of your documentation. It seamlessly blends the original setup, your specific folder structure layout, the updated raw TCP socket test cases, and an explanatory section mapping what the log outputs actually verify.
-
----
 
 # Decentralized P2P Network with Distributed Hash Table (DHT) & Native Multicast
 

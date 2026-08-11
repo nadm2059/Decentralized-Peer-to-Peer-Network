@@ -1,5 +1,4 @@
-# Specify the Docker Compose file format specification version for parsing compatibility
-version: '3.8'
+
 
 # Begin defining the specific runtime network containers that form the system cluster
 services:

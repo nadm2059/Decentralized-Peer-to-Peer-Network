@@ -1,10 +1,11 @@
 # Specify the Docker Compose file format specification version for parsing compatibility
-
+version: '3.8'
 
 # Begin defining the specific runtime network containers that form the system cluster
 services:
   # Orchestrate the centralized bootstrap lookup directory discovery instance
   bootstrap:
+    image: ghcr.io/nadm2059/decentralized-peer-to-peer-network:main
     # Set the build directory context path to look at the immediate folder contents
     build: .
     # Force the engine execution layer to process print statements instantly without buffering
@@ -18,6 +19,7 @@ services:
 
   # Orchestrate the low-level Anycast dynamic proxy router infrastructure layer
   anycast_gateway:
+    image: ghcr.io/nadm2059/decentralized-peer-to-peer-network:main
     # Reference local path configurations to parse the standardized shared project Dockerfile setup
     build: .
     # Instruct the container boundary space to boot up the TCP routing script execution layer
@@ -34,6 +36,7 @@ services:
 
   # Orchestrate the cluster storage pool peer instances concurrently
   p2p_node:
+    image: ghcr.io/nadm2059/decentralized-peer-to-peer-network:main
     # Construct the image build matrix using local configuration context path details
     build: .
     # Launch the main peer application layer node file execution engine script natively
@@ -41,8 +44,6 @@ services:
     # Pause node container compilation until the bootstrap server registry layer transitions to running
     depends_on:
       - bootstrap
-  
-
     # Inject persistent cluster global variables into the isolated node container environments
     environment:
       - BOOTSTRAP_URL=http://bootstrap:5000

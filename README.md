@@ -303,4 +303,3 @@ $$\text{Target Ring Index} = \text{HexToInt}(\text{SHA1}(\text{Key})) \pmod{\tex
  |
 | `/health` | `GET` | *None* | Returns a cluster liveness heartbeat report.
 
- |
